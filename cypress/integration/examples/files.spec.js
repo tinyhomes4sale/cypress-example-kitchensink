@@ -7,7 +7,7 @@ const requiredExample = require('../../fixtures/example')
 
 context('Files', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8080/commands/files')
+    cy.visit('http://example.cypress.io/commands/files')
   })
 
   beforeEach(() => {
