@@ -1,24 +1,10 @@
-# This Docker file is for building this project on Codeship Pro
-# https://documentation.codeship.com/pro/languages-frameworks/nodejs/
+FROM mhart/alpine-node
+WORKDIR /amarillo-repo
 
-# use Cypress provided image with all dependencies included
-FROM cypress/base:10
-RUN node --version
-RUN npm --version
-WORKDIR /home/node/app
-# copy our test application
-COPY package.json package-lock.json ./
-COPY app ./app
-COPY serve.json ./
-# copy Cypress tests
-COPY cypress.json cypress ./
-COPY cypress ./cypress
+COPY ./node_modules ./node_modules
 
-# avoid many lines of progress bars during install
-# https://github.com/cypress-io/cypress/issues/1243
-ENV CI=1
+RUN  mkdir -p /share-drive
+VOLUME /share-drive
 
-# install NPM dependencies and Cypress binary
-RUN npm ci
-# check if the binary was installed successfully
-RUN $(npm bin)/cypress verify
+
+CMD  cp -R . /share-drive

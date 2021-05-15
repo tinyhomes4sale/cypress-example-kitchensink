@@ -1,0 +1,6 @@
+{
+    "reporterEnabled": "mochawesome, mocha-elk-reporter",
+    "mochaJunitReporterReporterOptions": {
+      "mochaFile": "cypress/results/results-[hash].xml"
+    }
+  }
